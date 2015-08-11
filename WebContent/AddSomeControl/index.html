@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html ng-app="todoApp">
+<head>
+<title>Add Some Control</title>
+<meta charset="ISO-8859-1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="todo.js"></script>
+<link rel="stylesheet" href="todo.css">
+</head>
+<body>
+	<h2>Todo</h2>
+	<div ng-controller="TodoListController as todoList">
+		<span>{{todoList.remaining()}} von {{todoList.todos.length}}
+			offen</span> [ <a href="" ng-click="todoList.archive()">archive</a> ]
+		<ul class="unstyled">
+			<li ng-repeat="todo in todoList.todos"><input type="checkbox"
+				ng-model="todo.done"> <span class="done-{{todo.done}}">{{todo.text}}</span>
+			</li>
+		</ul>
+		<form ng-submit="todoList.addTodo()">
+			<input type="text" ng-model="todoList.todoText" size="30" placeholder="add new todo here"> 
+			<!--input type="text" ng-model="todoList.todoText" size="30"--> 
+			<input class="btn-primary" type="submit" value="add">
+			<p>
+				NEU: <b>{{todoList.todoText}}</b>
+			</p>
+			<p>Message: <b>{{todoList.message}}</b>
+		</form>
+	</div>
+</body>
+</html>
